@@ -5,46 +5,80 @@
     <!-- Bootstrap and winDevice, Font awesome Core Files-->
     <!-- Custom Material Design geenrated Using LESS  https://www.github.com/siddmegadeth/winDevice -->
     <script src="plugins/winDevice.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <!-- Custom Material Design geenrated Using LESS  https://www.github.com/siddmegadeth -->
-    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-paper.min.css">
     <link rel="stylesheet" type="text/css" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- ONSENUI Reference -->
+    <script type="text/javascript" src="plugins/OnsenUI-dist-2.10.10/js/onsenui.min.js"></script>
+    <link rel="stylesheet" href="plugins/OnsenUI-dist-2.10.10/css/onsenui.min.css">
+    <link rel="stylesheet" href="plugins/OnsenUI-dist-2.10.10/css/onsen-css-components.min.css">
     <!-- 2rd Part Reference -->
-    <script src="plugins/intl-tel-input-master/build/js/intlTelInput.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="plugins/intl-tel-input-master/build/js/utils.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="plugins/intl-tel-input-master/build/css/intlTelInput.min.css">
-    <link rel="stylesheet" type="text/css" href="plugins/intl-tel-input-master/build/css/intlTelInput.min.css">
     <!-- Components CSS -->
     <link rel="stylesheet" type="text/css" href="components/login/login.css">
     <link rel="stylesheet" type="text/css" href="components/landing/landing.css">
-    <link rel="stylesheet" type="text/css" href="components/navbar/navbar.css">
+    <link rel="stylesheet" type="text/css" href="components/verify/verify.css">
     </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Assignment</title>
+    <title>Algo Assignment</title>
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <base href="/">
 </head>
-<body ng-controller="globalCtrl" ng-cloak>
-    <div ng-include="'components/navbar/navbar.html'" ng-if="showNavbar"></div>
-    <div class="section">
-        <div ng-view></div>
-    </div>
+
+<body ng-cloak disable-tap>
+    <ons-navigator var="myNavigator" page="login.html" ng-cloak swipeable animation="fade"></ons-navigator>
+    <!-- Verify Page -->
+    <template id="verify.html">
+        <ons-page ng-controller="verifyCtrl">
+            <ons-toolbar>
+                <div class="center">
+                    Landing
+                </div>
+            </ons-toolbar>
+            <ons-progress-bar indeterminate ng-if="verifyLoader"></ons-progress-bar>
+        </ons-page>
+    </template>
+    <!-- login page -->
+    <template id="login.html">
+        <ons-page ng-controller="loginCtrl">
+            <ons-toolbar>
+                <div class="center">
+                    Login
+                </div>
+            </ons-toolbar>
+            <ons-progress-bar indeterminate ng-if="loginLoader"></ons-progress-bar>
+        </ons-page>
+    </template>
+    <!-- Landing Page -->
+    <template id="landing.html">
+        <ons-page ng-controller="landingCtrl">
+            <ons-toolbar>
+                <div class="center">
+                    Landing
+                </div>
+            </ons-toolbar>
+            <ons-progress-bar indeterminate ng-if="landingLoader"></ons-progress-bar>
+        </ons-page>
+    </template>
 </body>
 <!-- Core Framework API -->
+<script src="cordova.js" type="text/javascript" charset="utf-8"></script>
 <script src="plugins/angular-1.7.9/angular.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="plugins/angular-1.7.9/angular-route.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="plugins/angular-1.7.9/angular-messages.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="plugins/ngf-upload.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="plugins/ui-bootstrap-tpls-2.5.0.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="plugins/auto-validate.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="plugins/OnsenUI-dist-2.10.10/js/angular-onsenui.min.js"></script>
+<script type="text/javascript" src="plugins/satellizer.min.js"></script>
 <script src="init.js" type="text/javascript" charset="utf-8"></script>
 <!-- Controllers -->
-<script src="components/global/globalCtrl.js" type="text/javascript" charset="utf-8"></script>
 <script src="components/landing/landingCtrl.js" type="text/javascript" charset="utf-8"></script>
 <script src="components/login/loginCtrl.js" type="text/javascript" charset="utf-8"></script>
-<script src="components/not-found/notFoundCtrl.js" type="text/javascript" charset="utf-8"></script>
+<script src="components/verify/verifyCtrl.js" type="text/javascript" charset="utf-8"></script>
 <!-- Services -->
 <script src="services/rest-services.js" type="text/javascript" charset="utf-8"></script>
-<script src="components/global/services.js" type="text/javascript" charset="utf-8"></script>
 
 </html>
