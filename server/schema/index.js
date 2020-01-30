@@ -1,4 +1,4 @@
 (function() {
 
-	require("./profile-schema");
+	require("./profile/profile-schema");
 })();

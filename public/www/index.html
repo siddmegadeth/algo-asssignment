@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <link rel="stylesheet" type="text/css" href="plugins/animate.css">
     <!-- Bootstrap and winDevice, Font awesome Core Files-->
     <!-- Custom Material Design geenrated Using LESS  https://www.github.com/siddmegadeth/winDevice -->
     <script src="plugins/winDevice.js" type="text/javascript" charset="utf-8"></script>
@@ -16,7 +17,8 @@
     <link rel="stylesheet" type="text/css" href="components/login/login.css">
     <link rel="stylesheet" type="text/css" href="components/landing/landing.css">
     <link rel="stylesheet" type="text/css" href="components/verify/verify.css">
-    </style>
+    <link rel="stylesheet" type="text/css" href="components/global/onsen-overwrite.css">
+    <link rel="stylesheet" type="text/css" href="components/sign-up/sign-up.css">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Algo Assignment</title>
@@ -26,19 +28,13 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <base href="/">
 </head>
 
 <body ng-cloak disable-tap>
-    <ons-navigator var="myNavigator" page="login.html" ng-cloak swipeable animation="fade"></ons-navigator>
+    <ons-navigator var="myNavigator" page="verify.html" ng-cloak swipeable animation="fade"></ons-navigator>
     <!-- Verify Page -->
     <template id="verify.html">
         <ons-page ng-controller="verifyCtrl">
-            <ons-toolbar>
-                <div class="center">
-                    Landing
-                </div>
-            </ons-toolbar>
             <ons-progress-bar indeterminate ng-if="verifyLoader"></ons-progress-bar>
         </ons-page>
     </template>
@@ -51,6 +47,62 @@
                 </div>
             </ons-toolbar>
             <ons-progress-bar indeterminate ng-if="loginLoader"></ons-progress-bar>
+            <form>
+                <ons-card name="lognForm" >
+                    <div class="animated bounceInDown">
+                        <ons-list-item>
+                            <ons-input placeholder="Username" name="username" ng-model="profile.username" autocomplete="off"></ons-input>
+                        </ons-list-item>
+                        <ons-list-item>
+                            <ons-input type="password" placeholder="Password" name="password" ng-model="profile.password" autocomplete="off"></ons-input>
+                        </ons-list-item>
+                        <ons-list-item>
+                            <ons-button modifier="large" ng-click="login()">Login</ons-button>
+                        </ons-list-item>
+                        <ons-list-item>
+                            <ons-button modifier="large--quiet" ng-click="signup()" class="link-button">Sign Up</ons-button>
+                        </ons-list-item>
+                    </div>
+                </ons-card>
+            </form>
+        </ons-page>
+    </template>
+    <!-- create-profile Page -->
+    <template id="sign-up.html">
+        <ons-page ng-controller="signUpCtrl">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button></ons-back-button>
+                </div>
+                <div class="center">
+                    Sign Up
+                </div>
+            </ons-toolbar>
+            <ons-progress-bar indeterminate ng-if="signUpLoader"></ons-progress-bar>
+            <ons-card>
+                <form name="signUpForm" autocomplete="off">
+                    <div class="animated bounceInDown">
+                        <ons-list-item>
+                            <ons-input placeholder="Username" name="username" ng-model="profile.username" validation="min_len:3|max_len:8|required"></ons-input>
+                        </ons-list-item>
+                        <ons-list-item>
+                            <ons-input type="email" placeholder="Email" name="email" ng-model="profile.email" validation="min_len:6|email|required"></ons-input>
+                        </ons-list-item>
+                        <ons-list-item>
+                            <ons-input type="text" placeholder="Full Name" name="fullname" ng-model="profile.fullname" validation="min_len:8|required"></ons-input>
+                        </ons-list-item>
+                        <ons-list-item>
+                            <ons-input type="password" placeholder="Password" name="password" ng-model="profile.password" validation="min_len:8|alpha|required"></ons-input>
+                        </ons-list-item>
+                        <ons-list-item>
+                            <ons-input type="password" placeholder="Retype Password" name="repassword" ng-model="profile.repassword" validation="min_len:8|alpha|match:profile.password|required"></ons-input>
+                        </ons-list-item>
+                        <ons-list-item>
+                            <ons-button modifier="large" ng-click="signup()">Sign Up</ons-button>
+                        </ons-list-item>
+                    </div>
+                </form>
+            </ons-card>
         </ons-page>
     </template>
     <!-- Landing Page -->
@@ -70,14 +122,19 @@
 <script src="plugins/angular-1.7.9/angular.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="plugins/angular-1.7.9/angular-route.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="plugins/angular-1.7.9/angular-messages.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="plugins/auto-validate.min.js" type="text/javascript" charset="utf-8"></script>
+<!-- 3rd Party -->
+<script src="plugins/angular-1.7.9/angular-translate.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="plugins/angular-1.7.9/angular-translate-loader.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="plugins/angular-validation-master/dist/angular-validation.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="plugins/OnsenUI-dist-2.10.10/js/angular-onsenui.min.js"></script>
 <script type="text/javascript" src="plugins/satellizer.min.js"></script>
+<!-- App Init File -->
 <script src="init.js" type="text/javascript" charset="utf-8"></script>
 <!-- Controllers -->
 <script src="components/landing/landingCtrl.js" type="text/javascript" charset="utf-8"></script>
 <script src="components/login/loginCtrl.js" type="text/javascript" charset="utf-8"></script>
 <script src="components/verify/verifyCtrl.js" type="text/javascript" charset="utf-8"></script>
+<script src="components/sign-up/signUpCtrl.js" type="text/javascript" charset="utf-8"></script>
 <!-- Services -->
 <script src="services/rest-services.js" type="text/javascript" charset="utf-8"></script>
 

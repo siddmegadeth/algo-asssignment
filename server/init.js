@@ -1,7 +1,6 @@
 (function() {
     require("./init/index");
     require("./schema/index"); // Import Schema
-    require("./model/index"); // Import All Model/Function For Schema
     require("./routes/index"); // Import Routes
 
 

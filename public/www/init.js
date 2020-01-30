@@ -1,8 +1,9 @@
 var DI = [
-    'jcs-autoValidate',
+    'ghiscoding.validation',
     'ngMessages',
     'onsen',
-    'satellizer'
+    'satellizer',
+    'pascalprecht.translate'
 ];
 
 var win = new winDevice("myApp", DI); //Bootstrap Cordova Or Browser Based App .no ng-app Required
@@ -10,11 +11,11 @@ var app = win.device(); // init App
 win.enable(true);
 win.info();
 
+
+// Make Platform Selection Choose Either ios or android
 ons.platform.select('android');
 ons.ready(function() {
     warn("ONSENUI Ready");
-
-
     if (ons.platform.isIPhoneX()) { // Utility function
         warn("Platform Is iPhoneX :");
         // Add empty attribute to the <html> element
@@ -23,28 +24,23 @@ ons.ready(function() {
 });
 
 
+app.config(['$translateProvider', function($translateProvider) {
 
-app.config(['$locationProvider', function($locationProvider) {
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'plugins/angular-validation-master/locales/validation/',
+        suffix: '.json'
+    });
 
-    $locationProvider.hashPrefix('');
+    // define translation maps you want to use on startup
+    $translateProvider.preferredLanguage('en');
 
 }]);
-
 
 // Run once Change in Route Happens
 app.run(['$rootScope', function($rootScope) {
 
+    $rootScope.$on('$routeChangeStart', function(event, current, next) {});
 
-
-
-    $rootScope.$on('$routeChangeStart', function(event, current, next) {
-
-
-    });
-
-    $rootScope.$on('$routeChangeSuccess', function() {
-
-    });
-
+    $rootScope.$on('$routeChangeSuccess', function() {});
 
 }]);

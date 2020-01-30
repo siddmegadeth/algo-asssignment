@@ -1,6 +1,6 @@
 (function() {
 
-    mongoDbURI = module.exports = process.env.MONGOLAB_URI || 'mongodb://admin:admin123@ds145346.mlab.com:45346/hookup-2019-dummy' || 'mongodb://localhost:27017';
+    mongoDbURI = module.exports = process.env.MONGOLAB_URI || 'mongodb://admin123:admin123@ds261077.mlab.com:61077/database-test' || 'mongodb://localhost:27017';
     //mongoDbURI = module.exports = process.env.MONGOLAB_URI || 'mongodb://localhost:27017';
     mongoDB = module.exports = mongoDbURI;
     // Set up mongoose connection
