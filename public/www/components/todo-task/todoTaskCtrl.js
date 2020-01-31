@@ -1,4 +1,4 @@
-app.controller('todoTaskCtrl', ['$scope', 'rest', '$timeout', function($scope, rest, $timeout) {
+app.controller('todoTaskCtrl', ['$scope', 'rest', '$timeout', 'stateManager', function($scope, rest, $timeout, stateManager) {
 
     $scope.saveTask = function(task) {
         $scope.toDoTaskLoader = true;
@@ -20,12 +20,7 @@ app.controller('todoTaskCtrl', ['$scope', 'rest', '$timeout', function($scope, r
                     timeout: 3000
                 });
 
-                $timeout(function() {
-                    $scope.todoList = resp.data.profile.task;
-                    warn("Todo List");
-                    log($scope.todoList);
-
-                });
+               
             } else {
 
                 warn("Server Error Detected /Or Token Has Expired:");

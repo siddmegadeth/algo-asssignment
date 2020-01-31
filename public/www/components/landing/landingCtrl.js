@@ -1,5 +1,13 @@
 app.controller('landingCtrl', ['$scope', '$timeout', 'rest', 'stateManager', function($scope, $timeout, rest, stateManager) {
 
+    $scope.landingLoader = true;
+
+
+    var myNavigator = document.querySelector('ons-navigator');
+    myNavigator.addEventListener('postpush', function(event) {
+        error("'pushPage' is completed!");
+        log(event);
+    });
 
     $scope.addToDoTask = function() {
 
@@ -7,6 +15,15 @@ app.controller('landingCtrl', ['$scope', '$timeout', 'rest', 'stateManager', fun
             animation: 'lift-md'
         });
     };
+
+
+    $scope.pulltoRefresh = function($done) {
+        $timeout(function() {
+            $scope.getUpdatedToDoList();
+
+            $done();
+        }.bind(this), 1000);
+    }.bind(this);
 
 
 

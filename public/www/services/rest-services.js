@@ -21,14 +21,14 @@ app.service('rest', ['$http', 'stateManager', function($http, stateManager) {
                 }
             })
         },
-        saveTodo: function(list) {
+        saveTodo: function(task) {
             var profile = stateManager.getProfile();
             log(profile);
             return $http({
                 method: 'GET',
                 url: '/get/save/todo',
                 params: {
-                    list: list,
+                    task: task,
                     username: profile.username
                 }
             })

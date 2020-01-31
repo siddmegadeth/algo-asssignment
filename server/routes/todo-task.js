@@ -11,6 +11,7 @@
 
             if (found) {
                 log("Found Todo List");
+                log(found);
                 resp.send({ message: 'Todo List Fetched', status: true, profile: found });
             } else {
 
@@ -25,12 +26,12 @@
 
     app.get('/get/save/todo', ensureAuthenticated, function(req, resp) {
         log('/get/save/todo');
-        var list = req.body.list || req.query.list || req.param["list"];
+        var task = req.body.task || req.query.task || req.param["task"];
         var username = req.body.username || req.query.username || req.param["username"];
 
-        list = JSON.parse(list);
+        task = JSON.parse(task);
         log("List Todo Tasks");
-        log(list);
+        log(task);
         log("For Current Profile :");
         log(username);
 
@@ -41,9 +42,9 @@
 
             if (found) {
                 log("Username Found in Todo List");
-                taskToDoModel.findOneAndUpdate({ username: username }, { new: true }, {
+                taskToDoModel.update({ username: username }, {
                     $push: {
-                        task: list
+                        task: task
                     }
                 }, function(initErr, initUpdate) {
                     if (initErr) {
@@ -64,8 +65,8 @@
                 log("No Username Found in Todo List.Creating User And Todo List");
                 var tupleTodoList = new taskToDoModel({
                     username: username,
-                    task: list
                 });
+                tupleTodoList.push(task);
                 tupleTodoList.save(function(errSave, saved) {
                     if (errSave) {
                         resp.send({ error: errFound, message: 'Some Error Occured While Saving Todo List', status: false });

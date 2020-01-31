@@ -3,7 +3,9 @@ var DI = [
     'ngMessages',
     'onsen',
     'satellizer',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'ngAnimate',
+    'ngTouch'
 ];
 
 var win = new winDevice("myApp", DI); //Bootstrap Cordova Or Browser Based App .no ng-app Required
