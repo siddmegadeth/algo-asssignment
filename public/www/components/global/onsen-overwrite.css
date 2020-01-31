@@ -6,6 +6,27 @@ ons-toolbar.toolbar.toolbar--material {
     background: #2196F3;
 }
 
+textarea {
+    width: 100%;
+    height: 163px;
+
+}
+
+textarea.textarea {
+    width: 100%;
+}
+
+textarea.textarea.ng-pristine.ng-untouched.ng-empty.ng-invalid.ng-invalid-validation {
+    width: 100% !important;
+}
+
+textarea.textarea.ng-invalid.ng-invalid-validation.ng-not-empty.ng-dirty.ng-valid-parse.ng-touched {
+    width: 100% !important;
+}
+
+textarea.textarea.ng-dirty.ng-valid-parse.ng-touched.ng-empty.ng-invalid.ng-invalid-validation {
+    width: 100% !important;
+}
 
 /*back Toolbar*/
 

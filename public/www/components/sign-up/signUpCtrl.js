@@ -1,4 +1,4 @@
-app.controller('signUpCtrl', ['$scope', 'ValidationService', 'rest', '$timeout', function($scope, ValidationService, rest, $timeout) {
+app.controller('signUpCtrl', ['$scope', 'ValidationService', 'rest', '$timeout', 'stateManager', function($scope, ValidationService, rest, $timeout, stateManager) {
     var myValidation = new ValidationService();
 
     $scope.signup = function(profile) {
@@ -14,7 +14,7 @@ app.controller('signUpCtrl', ['$scope', 'ValidationService', 'rest', '$timeout',
             signUpModal.hide();
 
 
-            if (resp.data) {
+            if (resp.data && !rest.isRestError(resp)) {
 
                 if (resp.data.status && !resp.data.isNewUser) {
                     ons.notification.toast(resp.data.message, {
@@ -27,10 +27,15 @@ app.controller('signUpCtrl', ['$scope', 'ValidationService', 'rest', '$timeout',
                 }
 
             } else {
-                ons.notification.toast('Server Not Available', {
-                    timeout: 2000
-                })
 
+                warn("Server Error Detected /Or Token Has Expired:");
+                ons.notification.toast(resp.data.message, {
+                    timeout: 2000
+                });
+                stateManager.clearAll();
+                $scope.myNavigator.resetToPage('login.html', {
+                    animation: 'slide-md'
+                });
             }
         });
     }

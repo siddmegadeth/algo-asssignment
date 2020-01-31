@@ -19,7 +19,6 @@
     <link rel="stylesheet" type="text/css" href="components/verify/verify.css">
     <link rel="stylesheet" type="text/css" href="components/global/onsen-overwrite.css">
     <link rel="stylesheet" type="text/css" href="components/sign-up/sign-up.css">
-    <link rel="stylesheet" type="text/css" href="components/todo-task/todo-task.css">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Algo Assignment</title>
@@ -142,7 +141,7 @@
     </template>
     <!-- Todo Task Page -->
     <template id="todo-task.html">
-        <ons-page ng-controller="todoTaskCtrl">
+        <ons-page ng-controller="landingCtrl">
             <ons-toolbar>
                 <div class="left">
                     <ons-back-button></ons-back-button>
@@ -152,6 +151,22 @@
                 </div>
             </ons-toolbar>
             <ons-progress-bar indeterminate ng-if="toDoTaskLoader"></ons-progress-bar>
+            <form novalidate name="toDoTaskForm">
+                <ons-card>
+                    <div>
+                        <ons-list-item>
+                            <ons-input placeholder="header" name="header" ng-model="task.header" autocomplete="off" validation="min_len:8|required"></ons-input>
+                        </ons-list-item>
+                        <ons-list-item>
+                            <textarea class="textarea" rows="3" placeholder="Task Description" name="description" ng-model="task.description" autocomplete="off" validation="alpha_dash_spaces|min_len:8|required"></textarea>
+                        </ons-list-item>
+                        <ons-list-item>
+                            <ons-button type="submit" modifier="large" ng-click="saveTask(task)" ng-disabled="loginForm.$invalid"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Create</ons-button>
+                        </ons-list-item>
+                       
+                    </div>
+                </ons-card>
+            </form>
         </ons-page>
     </template>
 </body>
@@ -173,7 +188,6 @@
 <script src="components/login/loginCtrl.js" type="text/javascript" charset="utf-8"></script>
 <script src="components/verify/verifyCtrl.js" type="text/javascript" charset="utf-8"></script>
 <script src="components/sign-up/signUpCtrl.js" type="text/javascript" charset="utf-8"></script>
-<script src="components/todo-task/todoTaskCtrl.js" type="text/javascript" charset="utf-8"></script>
 <!-- Services -->
 <script src="services/rest-services.js" type="text/javascript" charset="utf-8"></script>
 <script src="services/http-interceptors.js" type="text/javascript" charset="utf-8"></script>

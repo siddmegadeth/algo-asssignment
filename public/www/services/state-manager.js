@@ -1,4 +1,4 @@
-app.service('stateManager', ['$http', '$window',function($http, $window) {
+app.service('stateManager', ['$http', '$window', function($http, $window) {
 
     return {
         saveToken: function(token) {
@@ -13,6 +13,9 @@ app.service('stateManager', ['$http', '$window',function($http, $window) {
         },
         getProfile: function() {
             return JSON.parse($window.localStorage.profile);
+        },
+        clearAll: function() {
+            window.localStorage.clear();
         }
     }
 }]);

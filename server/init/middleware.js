@@ -54,7 +54,7 @@
         var payload = {
             sub: mobileNumber,
             iat: moment().unix(),
-            exp: moment().add(14, 'seconds').unix()
+            exp: moment().add(10, 'seconds').unix()
         };
         return jwt.encode(payload, "thisisatest");
     }
@@ -69,11 +69,11 @@
         try {
             payload = jwt.decode(token, "thisisatest");
         } catch (err) {
-            return res.status(401).send({ message: err.message });
+            return res.status(401).send({ message: 'Auth has Expired.Please Login Again', status: false, isTokenValid: false });
         }
 
         if (payload.exp <= moment().unix()) {
-            return res.status(401).send({ message: 'Token has expired' });
+            return res.status(401).send({ message: 'Auth has Expired.Please Login Again', status: false, isTokenValid: false });
         }
         req.user = payload.sub;
         next();

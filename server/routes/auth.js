@@ -1,7 +1,12 @@
 (function() {
 
-    app.post("/user/auth", function(req, resp) {
-        log("/user/auth");
+    app.post("/post/validate/token", ensureAuthenticated, function(req, resp) {
+        resp.send({ message: 'Token Are Valid', status: true, isTokenValid: true });
+    });
+
+
+    app.post("/post/user/auth", function(req, resp) {
+        log("/post/user/auth");
         var profile = req.query.profile || req.body.profile || req.param["profile"];
         profile = JSON.parse(profile);
         log(profile);
@@ -50,7 +55,7 @@
     });
 
 
-    app.post("/user/signup", function(req, resp) {
+    app.post("/post/user/signup", function(req, resp) {
         log("/user/signup");
         var profile = req.query.profile || req.body.profile || req.param["profile"];
         profile = JSON.parse(profile);

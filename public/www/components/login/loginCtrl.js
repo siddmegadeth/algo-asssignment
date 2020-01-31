@@ -16,8 +16,10 @@ app.controller('loginCtrl', ['$scope', '$timeout', 'rest', 'stateManager', funct
         rest.authenticate(profile).then(function(resp) {
             warn("Response From Server on Auth:");
             log(resp);
+            loginModal.hide();
+            $scope.loginLoader = false;
 
-            if (resp.data) {
+            if (resp.data && !rest.isRestError(resp)) {
                 if (resp.data.status) {
                     if (!resp.data.isNewUser && resp.data.isPasswordCorrect) {
                         ons.notification.toast(resp.data.message, {
@@ -42,12 +44,17 @@ app.controller('loginCtrl', ['$scope', '$timeout', 'rest', 'stateManager', funct
                 }
 
             } else {
-                ons.notification.toast("Not Able To Reach Server", {
-                    timeout: 3000
+
+                warn("Server Error Detected /Or Token Has Expired:");
+                ons.notification.toast(resp.data.message, {
+                    timeout: 2000
+                });
+                stateManager.clearAll();
+                $scope.myNavigator.resetToPage('verify.html', {
+                    animation: 'slide-md'
                 });
             }
-            loginModal.hide();
-            $scope.loginLoader = false;
+
         });
     }
 

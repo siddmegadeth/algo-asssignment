@@ -7,7 +7,7 @@
             type: String,
             required: true
         },
-        taskDesription: {
+        taskDescription: {
             type: String,
             required: true,
         },
