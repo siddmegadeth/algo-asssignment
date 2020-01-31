@@ -132,6 +132,11 @@
                 <div class="center">
                     Todo Task List
                 </div>
+                <div class="right">
+                    <ons-toolbar-button ng-click="logout()">
+                        <ons-icon icon="fa-sign-out"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <ons-progress-bar indeterminate ng-if="landingLoader"></ons-progress-bar>
             <ons-pull-hook ng-action="pulltoRefresh($done)" var="loader">

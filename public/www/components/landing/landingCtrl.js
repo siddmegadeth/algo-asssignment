@@ -76,6 +76,14 @@ app.controller('landingCtrl', ['$scope', '$timeout', 'rest', 'stateManager', fun
         });
     }
 
+    $scope.logout = function() {
+        warn("Logout");
+        stateManager.clearAll();
+        $scope.myNavigator.resetToPage('login.html', {
+            animation: 'lift-md'
+        });
+    }
+
 
     $timeout(function() {
         $scope.getUpdatedToDoList();
