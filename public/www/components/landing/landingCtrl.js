@@ -8,15 +8,43 @@ app.controller('landingCtrl', ['$scope', '$timeout', 'rest', 'stateManager', fun
         });
     };
 
-    $scope.saveTask = function(task) {
-        warn("Task List");
-        log(task);
-        rest.saveTodo(task).then(function(resp) {
-            warn("Saving Todo List");
+
+
+    $scope.deleteTodoList = function() {
+
+    };
+
+    $scope.getUpdatedToDoList = function() {
+
+        $scope.landingLoader = true;
+
+        warn("Get Updated Todo List");
+        rest.getTodoList().then(function(resp) {
+
+            $scope.landingLoader = false;
+
+            warn("Retrieving Todo List");
             log(resp);
             log(resp.status);
 
             if (resp.data && !rest.isRestError(resp)) {
+
+                if (resp.data.profile != undefined) {
+                    $timeout(function() {
+                        $scope.todoList = resp.data.profile.task;
+                        warn("Todo List Retrieved");
+                        log($scope.todoList);
+
+                    });
+                } else {
+
+                    $timeout(function() {
+                        warn("Todo List Empty");
+
+                        $scope.todoList = [];
+
+                    });
+                }
 
             } else {
 
@@ -31,8 +59,9 @@ app.controller('landingCtrl', ['$scope', '$timeout', 'rest', 'stateManager', fun
         });
     }
 
-    $scope.cancelTask = function() {
 
-    }
+    $timeout(function() {
+        $scope.getUpdatedToDoList();
+    })
 
 }]);

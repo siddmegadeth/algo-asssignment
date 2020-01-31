@@ -3,11 +3,11 @@
 
     // Task Tuple Standalone Schema
     TaskTupleSchema = module.exports = mongoose.Schema({
-        taskName: {
+        header: {
             type: String,
             required: true
         },
-        taskDescription: {
+        description: {
             type: String,
             required: true,
         },

@@ -51,11 +51,15 @@
 
     // JWT Common Function
     createJWT = module.exports = function(mobileNumber) {
+
+        var timer = moment().add(1, 'days').unix();
         var payload = {
             sub: mobileNumber,
             iat: moment().unix(),
-            exp: moment().add(10, 'seconds').unix()
+            exp: timer
         };
+        log("JWT Token Expiry Set For :");
+        log(timer);
         return jwt.encode(payload, "thisisatest");
     }
 

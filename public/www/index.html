@@ -129,7 +129,7 @@
         <ons-page ng-controller="landingCtrl">
             <ons-toolbar>
                 <div class="center">
-                    Task
+                    Todo Task
                 </div>
             </ons-toolbar>
             <ons-progress-bar indeterminate ng-if="landingLoader"></ons-progress-bar>
@@ -137,11 +137,18 @@
                 <ons-icon icon="fa-pencil-square-o">
                 </ons-icon>
             </ons-fab>
+            <ons-list>
+                <ons-list-item ng-repeat="list in $scope.todoList">
+                    <div class="center">
+                        <span class="list-item__title">{{list.header}}</span><span class="list-item__subtitle">{{list.description}}</span>
+                    </div>
+                </ons-list-item>
+            </ons-list>
         </ons-page>
     </template>
     <!-- Todo Task Page -->
     <template id="todo-task.html">
-        <ons-page ng-controller="landingCtrl">
+        <ons-page ng-controller="todoTaskCtrl">
             <ons-toolbar>
                 <div class="left">
                     <ons-back-button></ons-back-button>
@@ -163,7 +170,6 @@
                         <ons-list-item>
                             <ons-button type="submit" modifier="large" ng-click="saveTask(task)" ng-disabled="loginForm.$invalid"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Create</ons-button>
                         </ons-list-item>
-                       
                     </div>
                 </ons-card>
             </form>
@@ -188,6 +194,7 @@
 <script src="components/login/loginCtrl.js" type="text/javascript" charset="utf-8"></script>
 <script src="components/verify/verifyCtrl.js" type="text/javascript" charset="utf-8"></script>
 <script src="components/sign-up/signUpCtrl.js" type="text/javascript" charset="utf-8"></script>
+<script src="components/todo-task/todoTaskCtrl.js" type="text/javascript" charset="utf-8"></script>
 <!-- Services -->
 <script src="services/rest-services.js" type="text/javascript" charset="utf-8"></script>
 <script src="services/http-interceptors.js" type="text/javascript" charset="utf-8"></script>

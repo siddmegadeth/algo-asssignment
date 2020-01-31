@@ -1,4 +1,4 @@
-app.service('rest', ['$http', function($http) {
+app.service('rest', ['$http', 'stateManager', function($http, stateManager) {
 
     return {
         authenticate: function(form) {
@@ -22,14 +22,27 @@ app.service('rest', ['$http', function($http) {
             })
         },
         saveTodo: function(list) {
+            var profile = stateManager.getProfile();
+            log(profile);
             return $http({
                 method: 'GET',
                 url: '/get/save/todo',
                 params: {
-                    list: list
+                    list: list,
+                    username: profile.username
                 }
             })
 
+        },
+        getTodoList: function() {
+            var profile = stateManager.getProfile();
+            return $http({
+                method: 'GET',
+                url: '/get/todo/list',
+                params: {
+                    username: profile.username
+                }
+            })
         },
         validateToken: function() {
             return $http({
