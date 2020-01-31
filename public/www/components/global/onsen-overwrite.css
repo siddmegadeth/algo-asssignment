@@ -1,3 +1,144 @@
 ons-input {
     width: 100%;
 }
+
+ons-toolbar.toolbar.toolbar--material {
+    background: #2196F3;
+}
+
+
+/*back Toolbar*/
+
+/*Toolbar*/
+ons-toolbar.toolbar.toolbar--material {
+    background: ##2196F3;
+}
+
+
+.tabbar:not(.tabbar--top) {
+    padding-bottom: 0;
+    /* background: radial-gradient(#E91E63, #9C27B0);*/
+    background: radial-gradient(#2196F3, #2196F3);
+}
+
+
+.tabbar.ons-tabbar__footer.ons-swiper-tabbar.tabbar--material.tabbar--top {
+    background: radial-gradient(#2196F3, #2196F3);
+    color: white;
+}
+
+
+
+
+
+/*SVG Icon On Toolbar*/
+svg {
+    fill: white;
+}
+
+
+
+/*onsen overwrite*/
+textarea.textarea.ng-pristine.ng-valid.ng-binding.ng-not-empty.ng-touched {
+    width: 100%;
+    height: 200px;
+}
+
+textarea.textarea.ng-valid.ng-binding.ng-empty.ng-dirty.ng-valid-parse.ng-touched {
+    width: 100%;
+    height: 200px;
+}
+
+textarea.textarea.ng-pristine.ng-untouched.ng-valid.ng-binding.ng-not-empty {
+    width: 100%;
+    height: 200px;
+}
+
+.list-item--material {
+    box-shadow: none;
+    padding-top: 2%;
+    /*    border-bottom: 1px solid #dedede;
+*/
+}
+
+.list-item--material__thumbnail {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+/*Uppy Overwirye*/
+.uppy-DashboardItem {
+    height: 16%;
+}
+
+.progress-bar--indeterminate:before {
+    background-color: #0076ff !important;
+}
+
+.progress-bar--indeterminate {
+    background-color: transparent;
+     !important;
+}
+
+.progress-bar--indeterminate:after {
+    background-color: #0076ff !important;
+}
+
+/*ons-progress-bar {
+    display: block;
+    background: #9E9E9E;
+}*/
+
+
+
+
+
+.center.toolbar__center.toolbar__title.toolbar--material__center {
+    color: white;
+}
+
+
+
+ons-fab.fab.fab--material.fab--bottom__left {
+    background: #F44336;
+    color: white;
+}
+
+/*Tabber Bottom */
+.tabbar--material__border {
+    height: 2px;
+    background-color: white;
+}
+
+.tabbar__icon {
+    color: white;
+}
+
+/*Fab Style Global*/
+ons-fab.fab.fab--material.fab--bottom__right {
+    background: #F44336;
+    color: white;
+}
+
+/*Tabber Color And Tabber Color Top*/
+.tabbar__label {
+    color: white;
+}
+
+
+
+
+
+/*Tabber icon*/
+ons-toolbar-button.toolbar-button.toolbar-button--material {
+    color: white;
+}
+
+
+
+
+.fa-magnet:before {
+    content: "\f076";
+    color: orange;
+}

@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="components/verify/verify.css">
     <link rel="stylesheet" type="text/css" href="components/global/onsen-overwrite.css">
     <link rel="stylesheet" type="text/css" href="components/sign-up/sign-up.css">
+    <link rel="stylesheet" type="text/css" href="components/todo-task/todo-task.css">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Algo Assignment</title>
@@ -36,6 +37,11 @@
     <template id="verify.html">
         <ons-page ng-controller="verifyCtrl">
             <ons-progress-bar indeterminate ng-if="verifyLoader"></ons-progress-bar>
+            <div class="verify-container">
+                <div class="heart-verify infinite heartBeat">
+                    <i class="fa fa-cog fa-4x fa-spin cog-white"></i>
+                </div>
+            </div>
         </ons-page>
     </template>
     <!-- login page -->
@@ -128,6 +134,24 @@
                 </div>
             </ons-toolbar>
             <ons-progress-bar indeterminate ng-if="landingLoader"></ons-progress-bar>
+            <ons-fab position="bottom right" ng-click="addToDoTask()">
+                <ons-icon icon="fa-pencil-square-o">
+                </ons-icon>
+            </ons-fab>
+        </ons-page>
+    </template>
+    <!-- Todo Task Page -->
+    <template id="todo-task.html">
+        <ons-page ng-controller="todoTaskCtrl">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button></ons-back-button>
+                </div>
+                <div class="center">
+                    Add Task
+                </div>
+            </ons-toolbar>
+            <ons-progress-bar indeterminate ng-if="toDoTaskLoader"></ons-progress-bar>
         </ons-page>
     </template>
 </body>
@@ -149,6 +173,7 @@
 <script src="components/login/loginCtrl.js" type="text/javascript" charset="utf-8"></script>
 <script src="components/verify/verifyCtrl.js" type="text/javascript" charset="utf-8"></script>
 <script src="components/sign-up/signUpCtrl.js" type="text/javascript" charset="utf-8"></script>
+<script src="components/todo-task/todoTaskCtrl.js" type="text/javascript" charset="utf-8"></script>
 <!-- Services -->
 <script src="services/rest-services.js" type="text/javascript" charset="utf-8"></script>
 <script src="services/http-interceptors.js" type="text/javascript" charset="utf-8"></script>
