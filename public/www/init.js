@@ -14,6 +14,7 @@ win.info();
 
 // Make Platform Selection Choose Either ios or android
 ons.platform.select('android');
+
 ons.ready(function() {
     warn("ONSENUI Ready");
     if (ons.platform.isIPhoneX()) { // Utility function
@@ -24,7 +25,7 @@ ons.ready(function() {
 });
 
 
-app.config(['$translateProvider', function($translateProvider) {
+app.config(['$translateProvider', '$httpProvider', function($translateProvider, $httpProvider) {
 
     $translateProvider.useStaticFilesLoader({
         prefix: 'plugins/angular-validation-master/locales/validation/',
@@ -33,6 +34,8 @@ app.config(['$translateProvider', function($translateProvider) {
 
     // define translation maps you want to use on startup
     $translateProvider.preferredLanguage('en');
+    $httpProvider.interceptors.push('httpInterceptors');
+    $httpProvider.interceptors.push('httpTimeoutInterceptors');
 
 }]);
 

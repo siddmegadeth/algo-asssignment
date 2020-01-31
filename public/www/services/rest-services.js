@@ -1,12 +1,25 @@
-app.service('restServices', ['$http', function($http) {
+app.service('rest', ['$http', function($http) {
 
     return {
-        sendForm: function(form) {
+        authenticate: function(form) {
 
-            return $http.post("/file/upload", form, {
-                transformRequest: angular.identity,
-                headers: { 'Content-Type': undefined }
-            });
+            return $http({
+                method: 'POST',
+                url: '/user/auth/',
+                params: {
+                    profile: form
+                }
+            })
+        },
+        signup: function(form) {
+
+            return $http({
+                method: 'POST',
+                url: '/user/signup/',
+                params: {
+                    profile: form
+                }
+            })
         }
     }
 }]);

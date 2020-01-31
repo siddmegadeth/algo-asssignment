@@ -1,5 +1,6 @@
 (function() {
 
-	require("./upload");
+    require("./upload");
+    require("./auth");
 
 })();

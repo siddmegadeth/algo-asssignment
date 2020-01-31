@@ -2,7 +2,6 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="plugins/animate.css">
     <!-- Bootstrap and winDevice, Font awesome Core Files-->
     <!-- Custom Material Design geenrated Using LESS  https://www.github.com/siddmegadeth/winDevice -->
     <script src="plugins/winDevice.js" type="text/javascript" charset="utf-8"></script>
@@ -12,6 +11,7 @@
     <script type="text/javascript" src="plugins/OnsenUI-dist-2.10.10/js/onsenui.min.js"></script>
     <link rel="stylesheet" href="plugins/OnsenUI-dist-2.10.10/css/onsenui.min.css">
     <link rel="stylesheet" href="plugins/OnsenUI-dist-2.10.10/css/onsen-css-components.min.css">
+    <link rel="stylesheet" type="text/css" href="plugins/animate.css">
     <!-- 2rd Part Reference -->
     <!-- Components CSS -->
     <link rel="stylesheet" type="text/css" href="components/login/login.css">
@@ -47,20 +47,27 @@
                 </div>
             </ons-toolbar>
             <ons-progress-bar indeterminate ng-if="loginLoader"></ons-progress-bar>
-            <form>
-                <ons-card name="lognForm" >
+            <ons-modal direction="up" var="loginModal">
+                <div class="modal-center">
+                    <p>
+                        <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Please Wait Authenticating ...
+                    </p>
+                </div>
+            </ons-modal>
+            <form novalidate name="loginForm">
+                <ons-card>
                     <div class="animated bounceInDown">
                         <ons-list-item>
-                            <ons-input placeholder="Username" name="username" ng-model="profile.username" autocomplete="off"></ons-input>
+                            <ons-input placeholder="Username" name="username" ng-model="profile.username" autocomplete="off" validation="min_len:8|required"></ons-input>
                         </ons-list-item>
                         <ons-list-item>
-                            <ons-input type="password" placeholder="Password" name="password" ng-model="profile.password" autocomplete="off"></ons-input>
+                            <ons-input type="password" placeholder="Password" name="password" ng-model="profile.password" autocomplete="off" validation="min_len:8|required"></ons-input>
                         </ons-list-item>
                         <ons-list-item>
-                            <ons-button modifier="large" ng-click="login()">Login</ons-button>
+                            <ons-button type="submit" modifier="large" ng-click="login(profile)" ng-disabled="loginForm.$invalid">Login</ons-button>
                         </ons-list-item>
                         <ons-list-item>
-                            <ons-button modifier="large--quiet" ng-click="signup()" class="link-button">Sign Up</ons-button>
+                            <ons-button name="loginSubmit" modifier="large--quiet" class="link-button" ng-click="signup()">Sign Up</ons-button>
                         </ons-list-item>
                     </div>
                 </ons-card>
@@ -79,26 +86,33 @@
                 </div>
             </ons-toolbar>
             <ons-progress-bar indeterminate ng-if="signUpLoader"></ons-progress-bar>
+            <ons-modal direction="up" var="signUpModal">
+                <div class="modal-center">
+                    <p>
+                        <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Please Wait...
+                    </p>
+                </div>
+            </ons-modal>
             <ons-card>
-                <form name="signUpForm" autocomplete="off">
+                <form name="signUpForm" novalidate>
                     <div class="animated bounceInDown">
                         <ons-list-item>
-                            <ons-input placeholder="Username" name="username" ng-model="profile.username" validation="min_len:3|max_len:8|required"></ons-input>
+                            <ons-input placeholder="Username" name="username" ng-model="profile.username" validation="min_len:8|required" autocomplete="off"></ons-input>
                         </ons-list-item>
                         <ons-list-item>
-                            <ons-input type="email" placeholder="Email" name="email" ng-model="profile.email" validation="min_len:6|email|required"></ons-input>
+                            <ons-input type="email" placeholder="Email" name="email" ng-model="profile.email" validation="min_len:6|email|required" autocomplete="off"></ons-input>
                         </ons-list-item>
                         <ons-list-item>
-                            <ons-input type="text" placeholder="Full Name" name="fullname" ng-model="profile.fullname" validation="min_len:8|required"></ons-input>
+                            <ons-input type="text" placeholder="Full Name" name="fullname" ng-model="profile.fullname" validation="min_len:8|required" autocomplete="off"></ons-input>
                         </ons-list-item>
                         <ons-list-item>
-                            <ons-input type="password" placeholder="Password" name="password" ng-model="profile.password" validation="min_len:8|alpha|required"></ons-input>
+                            <ons-input type="password" placeholder="Password" name="password" ng-model="profile.password" validation="min_len:8|required" autocomplete="off"></ons-input>
                         </ons-list-item>
                         <ons-list-item>
-                            <ons-input type="password" placeholder="Retype Password" name="repassword" ng-model="profile.repassword" validation="min_len:8|alpha|match:profile.password|required"></ons-input>
+                            <ons-input type="password" placeholder="Retype Password" name="repassword" ng-model="profile.repassword" validation="min_len:8|match:profile.password|required" autocomplete="off"></ons-input>
                         </ons-list-item>
                         <ons-list-item>
-                            <ons-button modifier="large" ng-click="signup()">Sign Up</ons-button>
+                            <ons-button type="submit" modifier="large" ng-click="signup(profile)" ng-disabled="signUpForm.$invalid">Sign Up</ons-button>
                         </ons-list-item>
                     </div>
                 </form>
@@ -110,7 +124,7 @@
         <ons-page ng-controller="landingCtrl">
             <ons-toolbar>
                 <div class="center">
-                    Landing
+                    Task
                 </div>
             </ons-toolbar>
             <ons-progress-bar indeterminate ng-if="landingLoader"></ons-progress-bar>
@@ -137,5 +151,7 @@
 <script src="components/sign-up/signUpCtrl.js" type="text/javascript" charset="utf-8"></script>
 <!-- Services -->
 <script src="services/rest-services.js" type="text/javascript" charset="utf-8"></script>
+<script src="services/http-interceptors.js" type="text/javascript" charset="utf-8"></script>
+<script src="services/state-manager.js" type="text/javascript" charset="utf-8"></script>
 
 </html>
