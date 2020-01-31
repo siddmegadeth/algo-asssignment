@@ -34,6 +34,18 @@ app.service('rest', ['$http', 'stateManager', function($http, stateManager) {
             })
 
         },
+        deleteTodo: function(task) {
+            var profile = stateManager.getProfile();
+            log(profile);
+            return $http({
+                method: 'GET',
+                url: '/get/delete/todo',
+                params: {
+                    task: task,
+                    username: profile.username
+                }
+            })
+        },
         getTodoList: function() {
             var profile = stateManager.getProfile();
             return $http({

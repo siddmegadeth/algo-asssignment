@@ -15,3 +15,6 @@
 4. Token Based Auth which checks and enable REST End points
 5. Seperation Of Concern 
 6. Hyrbid Mobile Device Framework Used (Can be used on Mobile Device)
+7. Create New Users and create Todo for each users on the  Fly
+8. Password Hashing
+9. Multi layer Security

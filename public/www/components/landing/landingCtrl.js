@@ -84,6 +84,12 @@ app.controller('landingCtrl', ['$scope', '$timeout', 'rest', 'stateManager', fun
         });
     }
 
+    $scope.performOperations = function(tuple, index) {
+        warn("performOperations");
+        log(tuple);
+        log(index);
+    }
+
 
     $timeout(function() {
         $scope.getUpdatedToDoList();

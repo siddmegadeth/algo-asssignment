@@ -1,6 +1,31 @@
 (function() {
 
 
+    app.get('/get/delete/todo', ensureAuthenticated, function(req, resp) {
+        log('/get/delete/todo');
+        var username = req.body.username || req.query.username || req.param["username"];
+        var task = req.body.task || req.query.task || req.param["task"];
+
+        taskTupleModel.findById({ _id: task._id }, function(errFound, found) {
+            if (errFound) {
+                resp.send({ error: errFound, message: 'Some Error Occured In Todo List Delete', status: false });
+            }
+
+            if (found) {
+                log("Found Todo List");
+                log(found);
+                resp.send({ message: 'Todo List Fetched', status: true, profile: found });
+            } else {
+
+                log("Not Able To Find Todo List");
+                resp.send({ message: 'Not Able To Get Todo List Or List Is Empty', status: true, profile: undefined });
+            }
+        });
+
+
+    });
+
+
     app.get('/get/todo/list', ensureAuthenticated, function(req, resp) {
         log('/get/todo/list');
         var username = req.body.username || req.query.username || req.param["username"];

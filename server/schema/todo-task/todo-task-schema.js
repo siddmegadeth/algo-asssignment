@@ -26,6 +26,11 @@
         next();
     });
 
+    taskTupleModel = module.exports = mongoose.model("TaskTupleModel", TaskTupleSchema);
+
+
+
+
     // Core Task Schema Mapped To User Generated Task
     ToDoTaskSchema = module.exports = mongoose.Schema({
         username: {
@@ -49,7 +54,6 @@
         }
         next();
     });
-
 
     taskToDoModel = module.exports = mongoose.model("taskToDoModel", ToDoTaskSchema);
 

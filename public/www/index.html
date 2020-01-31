@@ -167,7 +167,7 @@
                         <h1>No Todo Found</h1>
                     </div>
                 </ons-list-item>
-                <ons-list-item ng-repeat="list in todoList | filter : searchList | orderBy :'created_at'" ng-if="todoList.length!=0" class="animated bounce delay-1s" modifier="chevron" tappable>
+                <ons-list-item ng-repeat="list in todoList | filter : searchList | orderBy :'created_at'" ng-if="todoList.length!=0" class="animated bounce delay-1s" modifier="chevron" tappable ng-click="performOperations(list,$index)">
                     <div class="center">
                         <span class="list-item__title">{{list.header}}</span>
                         <span class="list-item__subtitle">{{list.created_at| date : 'mediumTime'}}</span>
