@@ -165,7 +165,10 @@
                 </ons-list-item>
                 <ons-list-item ng-if="todoList.length==0">
                     <div class="center">
-                        <h1>No Todo Found</h1>
+                        <div>
+                            <h1>No Todo Found</h1>
+                            <p1>Pull To Refresh</p1>
+                        </div>
                     </div>
                 </ons-list-item>
                 <!--  <ons-card ng-repeat="list in todoList | filter : searchList | orderBy :'created_at'" ng-if="todoList.length!=0" class="animated bounce delay-1s" modifier="chevron" tappable ng-click="performOperations(list,$index)">
