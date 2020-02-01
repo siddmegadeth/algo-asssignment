@@ -88,8 +88,11 @@ app.controller('landingCtrl', ['$scope', '$timeout', 'rest', 'stateManager', fun
         warn("performOperations");
         log(tuple);
         log(index);
+        $scope.myNavigator.pushPage('todo-task-details.html', {
+            animation: 'slide-md',
+            data: { task: tuple }
+        });
     }
-
 
     $timeout(function() {
         $scope.getUpdatedToDoList();

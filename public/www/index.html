@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="components/global/onsen-overwrite.css">
     <link rel="stylesheet" type="text/css" href="components/global/global.css">
     <link rel="stylesheet" type="text/css" href="components/sign-up/sign-up.css">
+    <link rel="stylesheet" type="text/css" href="components/todo-task-details/todo-task-details.css">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Algo Assignment</title>
@@ -167,6 +168,12 @@
                         <h1>No Todo Found</h1>
                     </div>
                 </ons-list-item>
+                <!--  <ons-card ng-repeat="list in todoList | filter : searchList | orderBy :'created_at'" ng-if="todoList.length!=0" class="animated bounce delay-1s" modifier="chevron" tappable ng-click="performOperations(list,$index)">
+                    <article>
+                        <h1>{{list.header}}</h1>
+                        <p>{{list.description}}</p>
+                    </article>
+                </ons-card> -->
                 <ons-list-item ng-repeat="list in todoList | filter : searchList | orderBy :'created_at'" ng-if="todoList.length!=0" class="animated bounce delay-1s" modifier="chevron" tappable ng-click="performOperations(list,$index)">
                     <div class="center">
                         <span class="list-item__title">{{list.header}}</span>
@@ -174,6 +181,26 @@
                     </div>
                 </ons-list-item>
             </ons-list>
+        </ons-page>
+    </template>
+    <template id="todo-task-details.html">
+        <ons-page ng-controller="todoTaskDetailsCtrl">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button></ons-back-button>
+                </div>
+                <div class="center">
+                    Task Details
+                </div>
+            </ons-toolbar>
+            <ons-card>
+                <article>
+                    <h3><strong>{{tuple.header}}</strong></h3>
+                    <p>{{tuple.description}}</p>
+                    <p>{{tuple.created_at| date : 'mediumTime'}}</p>
+                </article>
+                <ons-button ng-click="deleteTask(tuple)" modifier="large">Delete</ons-button>
+            </ons-card>
         </ons-page>
     </template>
     <!-- Todo Task Page -->
@@ -227,6 +254,7 @@
 <script src="components/verify/verifyCtrl.js" type="text/javascript" charset="utf-8"></script>
 <script src="components/sign-up/signUpCtrl.js" type="text/javascript" charset="utf-8"></script>
 <script src="components/todo-task/todoTaskCtrl.js" type="text/javascript" charset="utf-8"></script>
+<script src="components/todo-task-details/todoTaskDetailsCtrl.js" type="text/javascript" charset="utf-8"></script>
 <!-- Services -->
 <script src="services/rest-services.js" type="text/javascript" charset="utf-8"></script>
 <script src="services/http-interceptors.js" type="text/javascript" charset="utf-8"></script>

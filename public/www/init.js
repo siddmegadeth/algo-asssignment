@@ -23,6 +23,7 @@ ons.ready(function() {
         warn("Platform Is iPhoneX :");
         // Add empty attribute to the <html> element
         document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
+        document.querySelector('ons-page').on('postchange', e => e.stopPropagation())
     }
 });
 

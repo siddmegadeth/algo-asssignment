@@ -1,0 +1,8 @@
+.tranaparent-button {
+    background: transparent;
+    color: black;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+}

@@ -6,22 +6,30 @@
         var username = req.body.username || req.query.username || req.param["username"];
         var task = req.body.task || req.query.task || req.param["task"];
 
-        taskTupleModel.findById({ _id: task._id }, function(errFound, found) {
-            if (errFound) {
-                resp.send({ error: errFound, message: 'Some Error Occured In Todo List Delete', status: false });
+        task = JSON.parse(task);
+        log("Username From Whom To Remove Task");
+        log(username);
+        log("Task :");
+        log(task);
+
+        taskToDoModel.findOneAndUpdate({ username: username }, { "$pull": { "task": { "_id": task._id } } }, { new: true }, function(errRemove, removed) {
+
+            if (errRemove) {
+                log("Err Found While Removing Task Todo");
+                resp.send({ error: errFound, message: 'Some Error Occured In Todo List Delete', status: false, isTaskDeleted: undefined });
             }
 
-            if (found) {
-                log("Found Todo List");
-                log(found);
-                resp.send({ message: 'Todo List Fetched', status: true, profile: found });
+            if (removed) {
+                log("Task Removed");
+                resp.send({ message: 'Todo List Deleted', status: true, profile: removed, isTaskDeleted: true });
+
             } else {
+                log("Task Cannot Be Removed");
+                resp.send({ message: 'Not Able To Get Todo List Or List Is Empty', status: true, profile: undefined, isTaskDeleted: false });
 
-                log("Not Able To Find Todo List");
-                resp.send({ message: 'Not Able To Get Todo List Or List Is Empty', status: true, profile: undefined });
             }
-        });
 
+        });
 
     });
 
